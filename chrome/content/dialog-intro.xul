@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://certwatch/locale/dialog-intro.dtd">
+
+<dialog id="certwatch-init"
+        title="&certwatch.name;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        buttons="accept"
+        buttonlabelaccept="OK"
+        buttonaccesskeyaccept="O"
+        onload="return onLoad();"
+        ondialogaccept="return true;"
+        centerwindowonscreen="yes"
+        width="660"
+        height="450"
+        >
+
+<stringbundleset id="stringbundleset">
+    <stringbundle id="certwatch-strings" src="chrome://certwatch/locale/certwatch.properties"/>
+</stringbundleset>
+
+<script type="application/javascript" src="chrome://certwatch/content/dialog-intro.js"/>
+
+<dialogheader id="dialogIntro" title="&certwatch.name;" description="Running for the first time" />
+
+<vbox flex="1" style="overflow: auto">
+  <groupbox>
+    <description>&dialog.intro.desc1;</description>
+    <description>&dialog.intro.desc2;</description>
+    <description>&dialog.intro.desc3;</description>
+    <description>&dialog.intro.desc4;</description>
+  </groupbox>
+
+  <groupbox>
+  <spacer flex="1" />
+  <description>&dialog.intro.desc5;</description>
+  <description id="dialogIntroCounts">
+    <html:p id="dialogIntroCounts_content" />
+  </description>
+  <description>&dialog.intro.desc7;</description>
+  </groupbox>
+
+<!--
+  <description>&dialog.intro.descX1;</description>
+  <spacer flex="1" />
+  <description>&dialog.intro.descX2;</description>
+-->
+</vbox>
+
+</dialog>

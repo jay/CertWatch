@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ***** BEGIN LICENSE BLOCK *****
+  -   Version: MPL 1.1/GPL 2.0/LGPL 2.1
+  -
+  - The contents of this file are subject to the Mozilla Public License Version
+  - 1.1 (the "License"); you may not use this file except in compliance with
+  - the License. You may obtain a copy of the License at
+  - http://www.mozilla.org/MPL/
+  -
+  - Software distributed under the License is distributed on an "AS IS" basis,
+  - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  - for the specific language governing rights and limitations under the
+  - License.
+  -
+  - The Original Code is Certificate Watch.
+  -
+  - The Initial Developer of the Original Code is
+  - Simos Xenitellis.
+  - Portions created by the Initial Developer are Copyright (C) 2010
+  - the Initial Developer. All Rights Reserved.
+  -
+  - Contributor(s):
+  -
+  - Alternatively, the contents of this file may be used under the terms of
+  - either the GNU General Public License Version 2 or later (the "GPL"), or
+  - the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+  - in which case the provisions of the GPL or the LGPL are applicable instead
+  - of those above. If you wish to allow use of your version of this file only
+  - under the terms of either the GPL or the LGPL, and not to allow others to
+  - use your version of this file under the terms of the MPL, indicate your
+  - decision by deleting the provisions above and replace them with the notice
+  - and other provisions required by the GPL or the LGPL. If you do not delete
+  - the provisions above, a recipient may use your version of this file under
+  - the terms of any one of the MPL, the GPL or the LGPL.
+  -
+  - ***** END LICENSE BLOCK ***** -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://certwatch/locale/prefwindow.dtd">
+<prefwindow id="certwatchPreferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&prefwindow.title;">
+<script type="application/javascript" src="chrome://certwatch/content/options.js"/>
+  <prefpane id="prefpane" onpaneload="onPaneLoad()" label="&prefpane.title;">
+    <preferences>
+      <preference id="show_root"
+                  name="extensions.certwatch.show_root_certificate"
+                  type="int"/>
+      <preference id="show_website"
+                  name="extensions.certwatch.show_website_certificate"
+                  type="int"/>
+    </preferences>
+
+  <dialogheader id="dialogPreferences" title="CertWatch" description="&prefpane.dialog.title;" />
+  <vbox>
+    <grid>
+      <columns>
+        <column flex="1" />
+        <column flex="1" />
+      </columns>
+
+      <rows>
+        <row>
+          <groupbox>
+          <caption label="&prefpane.caption.website;" />
+          <hbox align="center">
+
+          <label accesskey="&show_website.accesskey;"
+                   control="textintpref">
+            &show_website.pref.label;
+          </label>
+
+          <menulist id="menulistWebsite">
+            <menupopup id="menuPopupWebsite">
+              <menuitem id="itemW0" oncommand='onSelectWebsite(0);'   label="&prefpane.times.never;" />
+              <menuitem id="itemW1" oncommand='onSelectWebsite(1);'   label="&prefpane.times.times1;" />
+              <menuitem id="itemW2" oncommand='onSelectWebsite(2);'   label="&prefpane.times.times2;" />
+              <menuitem id="itemW3" oncommand='onSelectWebsite(3);'   label="&prefpane.times.times3;" />
+              <menuitem id="itemW5" oncommand='onSelectWebsite(5);'   label="&prefpane.times.times5;" />
+              <menuitem id="itemW10" oncommand='onSelectWebsite(10);' label="&prefpane.times.times10;" />
+              <menuitem id="itemW20" oncommand='onSelectWebsite(20);' label="&prefpane.times.times20;" />
+              <menuitem id="itemWM1" oncommand='onSelectWebsite(-1);' label="&prefpane.times.always;"  />
+            </menupopup>
+          </menulist>
+          </hbox>
+          </groupbox>
+        </row>
+
+        <row>
+          <groupbox>
+          <caption label="&prefpane.caption.intermediate;" />
+          <hbox flex="1" align="center">
+
+          <label accesskey="&show_intermediate.accesskey;"
+                   control="textintpref">
+            &show_intermediate.pref.label;
+          </label>
+
+          <menulist id="menulistIntermediate">
+            <menupopup id="menuPopupIntermediate">
+              <menuitem id="itemI0" oncommand='onSelectIntermediate(0);'   label="&prefpane.times.never;" />
+              <menuitem id="itemI1" oncommand='onSelectIntermediate(1);'   label="&prefpane.times.times1;" />
+              <menuitem id="itemI2" oncommand='onSelectIntermediate(2);'   label="&prefpane.times.times2;" />
+              <menuitem id="itemI3" oncommand='onSelectIntermediate(3);'   label="&prefpane.times.times3;" />
+              <menuitem id="itemI5" oncommand='onSelectIntermediate(5);'   label="&prefpane.times.times5;" />
+              <menuitem id="itemI10" oncommand='onSelectIntermediate(10);' label="&prefpane.times.times10;" />
+              <menuitem id="itemI20" oncommand='onSelectIntermediate(20);' label="&prefpane.times.times20;" />
+              <menuitem id="itemIM1" oncommand='onSelectIntermediate(-1);' label="&prefpane.times.always;" />
+            </menupopup>
+          </menulist>
+          </hbox>
+          </groupbox>
+        </row>
+
+        <row>
+          <groupbox>
+          <caption label="&prefpane.caption.root;" />
+          <hbox flex="1" align="center">
+
+          <label accesskey="&show_root.accesskey;"
+                   control="textintpref">
+            &show_root.pref.label;
+          </label>
+
+          <menulist id="menulistRoot">
+            <menupopup id="menuPopupRoot">
+              <menuitem id="itemR0" oncommand='onSelectRoot(0);'   label="&prefpane.times.never;" />
+              <menuitem id="itemR1" oncommand='onSelectRoot(1);'   label="&prefpane.times.times1;" />
+              <menuitem id="itemR2" oncommand='onSelectRoot(2);'   label="&prefpane.times.times2;" />
+              <menuitem id="itemR3" oncommand='onSelectRoot(3);'   label="&prefpane.times.times3;" />
+              <menuitem id="itemR5" oncommand='onSelectRoot(5);'   label="&prefpane.times.times5;" />
+              <menuitem id="itemR10" oncommand='onSelectRoot(10);' label="&prefpane.times.times10;" />
+              <menuitem id="itemR20" oncommand='onSelectRoot(20);' label="&prefpane.times.times20;" />
+              <menuitem id="itemRM1" oncommand='onSelectRoot(-1);' label="&prefpane.times.always;" />
+            </menupopup>
+          </menulist>
+          </hbox>
+          </groupbox>
+        </row>
+
+      </rows>
+    </grid>
+  </vbox>
+
+  </prefpane>
+</prefwindow>

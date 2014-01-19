@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>CertWatch@SIMOS.INFO</em:id>
+    <em:name>Certificate Watch</em:name>
+    <em:type>2</em:type>
+    <em:version>1.1</em:version>
+    <em:creator>Simos Xenitellis</em:creator>
+    <em:description>Helps control when certificates are being used.</em:description>
+    <em:homepageURL>http://certwatch.simos.info/</em:homepageURL>
+    <em:aboutURL>chrome://certwatch/content/about.xul</em:aboutURL>
+    <em:optionsURL>chrome://certwatch/content/options.xul</em:optionsURL>
+    <em:iconURL>chrome://certwatch/content/certwatch.png</em:iconURL>
+    <em:localized>
+      <Description>
+        <em:locale>en-US</em:locale>
+        <em:name>Certificate Watch (CertWatch)</em:name>
+        <em:description>Watches how security certificates are being used and helps you to identify risks</em:description>
+        <em:creator>Simos Xenitellis</em:creator>
+        <em:homepageURL>http://certwatch.simos.info/</em:homepageURL>
+      </Description>
+    </em:localized>
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
+        <em:minVersion>3.5</em:minVersion>
+        <em:maxVersion>4.2a1pre</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>
