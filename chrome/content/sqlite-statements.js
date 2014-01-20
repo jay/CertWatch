@@ -39,38 +39,32 @@ var sqliteStrings =
   // CertWatchDB.sqlite initialisation strings
   dbTableVersionCreate: "CREATE TABLE version (version INT)",
   dbTableVersionInsert: "INSERT INTO version (version) VALUES (3)",
-  dbTableCertificatesRoot: ""+<r><![CDATA[
-              CREATE TABLE certificatesRoot (
-              hashCertificate TEXT PRIMARY KEY not NULL,
-              derCertificate TEXT not NULL,
-              commonName TEXT not NULL,
-              organization TEXT not NULL,
-              dateAddedToCertWatch DATE default CURRENT_TIMESTAMP,
-              dateRemovedFromMozilla DATE default NULL,
-              dateReAddedToMozilla DATE default NULL,
-              dateFirstUsed DATE default NULL,
-              dateLastUsed DATE default NULL,
-              countTimesUsed INTEGER default '0',
-              hashParent TEXT not NULL)
-                       ]]></r>,
-  dbTableCertificatesWebsite: ""+<r><![CDATA[
-          CREATE TABLE certificatesWebsite (
-              hashCertificate TEXT PRIMARY KEY not NULL,
-              derCertificate TEXT not NULL,
-              commonNameWebsite TEXT not NULL,
-              dateFirstVisit DATE default CURRENT_TIMESTAMP,
-              dateLastVisit DATE default CURRENT_TIMESTAMP,
-              countTimesVisited INTEGER default '1',
-              hashParent TEXT not NULL)
-                      ]]></r>,
-  dbTableVisitsWebsite: ""+<r><![CDATA[
-          CREATE TABLE visitsWebsite (
-              commonNameWebsite TEXT not NULL,
-              hashCertificate TEXT not NULL,
-              dateVisit DATE default CURRENT_TIMESTAMP,
-              urlPage TEXT not NULL,
-              urlReferer TEXT default NULL)
-                      ]]></r>,
+  dbTableCertificatesRoot: "CREATE TABLE certificatesRoot ( \
+              hashCertificate TEXT PRIMARY KEY not NULL, \
+              derCertificate TEXT not NULL, \
+              commonName TEXT not NULL, \
+              organization TEXT not NULL, \
+              dateAddedToCertWatch DATE default CURRENT_TIMESTAMP, \
+              dateRemovedFromMozilla DATE default NULL, \
+              dateReAddedToMozilla DATE default NULL, \
+              dateFirstUsed DATE default NULL, \
+              dateLastUsed DATE default NULL, \
+              countTimesUsed INTEGER default '0', \
+              hashParent TEXT not NULL)",
+  dbTableCertificatesWebsite: "CREATE TABLE certificatesWebsite ( \
+              hashCertificate TEXT PRIMARY KEY not NULL, \
+              derCertificate TEXT not NULL, \
+              commonNameWebsite TEXT not NULL, \
+              dateFirstVisit DATE default CURRENT_TIMESTAMP, \
+              dateLastVisit DATE default CURRENT_TIMESTAMP, \
+              countTimesVisited INTEGER default '1', \
+              hashParent TEXT not NULL)",
+  dbTableVisitsWebsite: "CREATE TABLE visitsWebsite ( \
+              commonNameWebsite TEXT not NULL, \
+              hashCertificate TEXT not NULL, \
+              dateVisit DATE default CURRENT_TIMESTAMP, \
+              urlPage TEXT not NULL, \
+              urlReferer TEXT default NULL)",
 
   // Prepared SQLite statement strings
   dbSelectStringCertificatesRoot:
@@ -86,62 +80,46 @@ var sqliteStrings =
   dbSelectStringVisitsHash:
       "SELECT * FROM visitsWebsite WHERE hashCertificate=:hash",
 
-  dbInsertStringCertificates: ""+<r><![CDATA[
-      INSERT INTO certificatesRoot (hashCertificate,
-                                    derCertificate,
-                                    commonName,
-                                    organization,
-                                    dateAddedToCertWatch,
-                                    hashParent)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6)
-                                    ]]></r>,
-  dbInsertStringCertificatesWebsite: ""+<r><![CDATA[
-      INSERT INTO certificatesWebsite (hashCertificate,
-                                       derCertificate,
-                                       commonNameWebsite,
-                                       dateFirstVisit,
-                                       dateLastVisit,
-                                       countTimesVisited,
-                                       hashParent)
-      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
-                                    ]]></r>,
-  dbInsertStringVisits: ""+<r><![CDATA[
-      INSERT INTO visitsWebsite (commonNameWebsite,
-                                 hashCertificate,
-                                 dateVisit,
-                                 urlPage,
-                                 urlReferer)
-      VALUES (?1, ?2, ?3, ?4, ?5)
-                                 ]]></r>,
+  dbInsertStringCertificates: "INSERT INTO certificatesRoot (hashCertificate, \
+                                    derCertificate, \
+                                    commonName, \
+                                    organization, \
+                                    dateAddedToCertWatch, \
+                                    hashParent) \
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+  dbInsertStringCertificatesWebsite: "INSERT INTO certificatesWebsite (hashCertificate, \
+                                       derCertificate, \
+                                       commonNameWebsite, \
+                                       dateFirstVisit, \
+                                       dateLastVisit, \
+                                       countTimesVisited, \
+                                       hashParent) \
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+  dbInsertStringVisits: "INSERT INTO visitsWebsite (commonNameWebsite, \
+                                 hashCertificate, \
+                                 dateVisit, \
+                                 urlPage, \
+                                 urlReferer) \
+      VALUES (?1, ?2, ?3, ?4, ?5)",
 
-  dbUpdateStringCertificatesRootRemoved: ""+<r><![CDATA[
-      UPDATE certificatesRoot SET
-                                 dateRemovedFromMozilla=:dateRemovedFromMozilla
-      WHERE hashCertificate=:hashCertificate
-                                 ]]></r>,
-  dbUpdateStringCertificatesRootReAdded: ""+<r><![CDATA[
-      UPDATE certificatesRoot SET
-                                 dateReAddedToMozilla=:dateReAddedToMozilla
-      WHERE hashCertificate=:hashCertificate
-                                 ]]></r>,
-  dbUpdateStringCertificatesRootWeb: ""+<r><![CDATA[
-      UPDATE certificatesRoot SET
-                                 dateFirstUsed=:dateFirstUsed,
-                                 dateLastUsed=:dateLastUsed,
-                                 countTimesUsed=:countTimesUsed
-      WHERE hashCertificate=:hashCertificate
-                                 ]]></r>,
-  dbUpdateStringCertificatesIntermediate: ""+<r><![CDATA[
-      UPDATE certificatesRoot SET
-                                         dateLastUsed=:dateLastUsed,
-                                         countTimesUsed=:countTimesUsed
-      WHERE hashCertificate=:hashCertificate
-                                 ]]></r>,
-  dbUpdateStringCertificatesWebsites: ""+<r><![CDATA[
-      UPDATE certificatesWebsite SET
-                                    dateFirstVisit=:dateFirstVisit,
-                                    dateLastVisit=:dateLastVisit,
-                                    countTimesVisited=:countTimesVisited
-      WHERE hashCertificate=:hashCertificate
-                                    ]]></r>
+  dbUpdateStringCertificatesRootRemoved: "UPDATE certificatesRoot SET \
+                                 dateRemovedFromMozilla=:dateRemovedFromMozilla \
+      WHERE hashCertificate=:hashCertificate",
+  dbUpdateStringCertificatesRootReAdded: "UPDATE certificatesRoot SET \
+                                 dateReAddedToMozilla=:dateReAddedToMozilla \
+      WHERE hashCertificate=:hashCertificate",
+  dbUpdateStringCertificatesRootWeb: "UPDATE certificatesRoot SET \
+                                 dateFirstUsed=:dateFirstUsed, \
+                                 dateLastUsed=:dateLastUsed, \
+                                 countTimesUsed=:countTimesUsed \
+      WHERE hashCertificate=:hashCertificate",
+  dbUpdateStringCertificatesIntermediate: "UPDATE certificatesRoot SET \
+                                         dateLastUsed=:dateLastUsed, \
+                                         countTimesUsed=:countTimesUsed \
+      WHERE hashCertificate=:hashCertificate",
+  dbUpdateStringCertificatesWebsites: "UPDATE certificatesWebsite SET \
+                                    dateFirstVisit=:dateFirstVisit, \
+                                    dateLastVisit=:dateLastVisit, \
+                                    countTimesVisited=:countTimesVisited \
+      WHERE hashCertificate=:hashCertificate"
 };
