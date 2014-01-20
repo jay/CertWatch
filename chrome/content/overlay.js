@@ -592,7 +592,7 @@ var CertWatch =
                       clickedCancel: false
                     };
 
-    for (i = 1; i < countCertificates; i++)
+    for (i = 0; i < countCertificates; i++)
     {
         if ( chainCerts[i].mustShow )
         {
