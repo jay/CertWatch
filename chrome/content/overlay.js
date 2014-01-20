@@ -86,7 +86,7 @@ var CertWatch =
       dbFilePrevious.append("CertWatchDB2.sqlite");
 
       // Does '.../CertWatchDB.sqlite' exist?
-      var dbExists = dbFile.exists();
+      var dbExists = (dbFile.exists() && !(dbFile.fileSize === 0));
 
       if (!dbExists && dbFilePrevious.exists())
       {
