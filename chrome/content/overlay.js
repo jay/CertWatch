@@ -544,7 +544,7 @@ var CertWatch =
     rawDER = chainCerts[0].cert.getRawDER({});
     base64DER = CertWatchHelpers.convertDERtoBase64(rawDER);
     if (countCertificates > 1)
-        hashCertParent = chainCerts[0].cert.sha1Fingerprint;
+        hashCertParent = chainCerts[1].cert.sha1Fingerprint;
     else
         hashCertParent = "";
 
