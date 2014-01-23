@@ -676,6 +676,13 @@ var CertWatch =
 
         this.dbInsertCertsRoot.execute();
 
+        this.dbUpdateCertsRootWeb.params.dateFirstUsed = now;
+        this.dbUpdateCertsRootWeb.params.dateLastUsed = now;
+        this.dbUpdateCertsRootWeb.params.countTimesUsed = 1;
+        this.dbUpdateCertsRootWeb.params.hashCertificate = hashCert;
+
+        this.dbUpdateCertsRootWeb.execute();
+
         timesAccessed = 1;
       }
     }
