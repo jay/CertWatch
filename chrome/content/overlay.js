@@ -623,6 +623,7 @@ var CertWatch =
   // The root certificate is the last certificate in the certificate chain.
   doRootCertificateWasAccessed: function(hashCert, base64DER, cert, URL, hashParent)
   {
+    var now = Date();
     var timesAccessed;
 
     try
@@ -632,7 +633,6 @@ var CertWatch =
       // If known root/intermediate certificate hash,
       if (this.dbSelectCertsRootHash.executeStep())
       {
-        var now = Date();
 
         var storedRootCertFirstUsed  = this.dbSelectCertsRootHash.getUTF8String(7);
         var storedRootCertLastUsed   = this.dbSelectCertsRootHash.getUTF8String(8);
